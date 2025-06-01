@@ -1,5 +1,15 @@
 const socket = io();
 const form = document.getElementById('form');
+
+socket.on ('all_messages',function(msgArray){
+    msgArray.forEach(msg => {
+        let item = document.createElement('li');
+        item.textContent = msg.login + ':'+msg.content;
+        messeges.appendChild(item);
+    });
+    window.scrollTo(0,document.body.scrollHeight);
+});
+
 form.addEventListener('submit', function(e){
     e.preventDefault();
     if(input.value){

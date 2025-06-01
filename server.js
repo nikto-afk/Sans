@@ -28,14 +28,14 @@ const io = new Server(server);
 io.on ('connection', (socket) =>{
     console.log('a user connected. id - ' + socket.id);
 
-    let userNickname ='user'
-
-    socket.on('set_nickname', (nickname) =>{
-       userNickname = nickname;
-    });
+    let userNickname ='admin';
+    let messages = await.db.getMessage();
+      
+    socket.emit('allmessages', message);
 
     socket.on('new_message', (message) =>{
-       io.emit('messege', userNickname + ':' + message );
+      db.addMessage(message, 1)
+      io.emit('messege', userNickname + ':' + message );
     });
 });
 
